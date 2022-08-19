@@ -5,7 +5,7 @@ ul.innerHTML=ul.innerHTML+ul.innerHTML;
 let lis=document.querySelectorAll('li');
 let btns=document.querySelectorAll('.btn');
 // 每次滚动的跨度（正数向右，负数向左，默认向左滚动）
-let spa=-2;
+let spa=10;
 // 计算并设置ul的总宽度
 ul.style.width=lis[0].offsetWidth*lis.length+'px';
 
@@ -42,4 +42,20 @@ btns[0].addEventListener('click',function(){
 // 向右走
 btns[1].addEventListener('click',function(){
     spa=2;
+})
+btns[2].addEventListener('click',function(){
+    const timer1 = setInterval(() => {
+        spa += 0.1
+        if (spa > 50) {
+            console.log(spa);
+          clearInterval(timer1)
+          const timer2 = setInterval(() => {
+            spa -= 0.03
+            if (spa <= 0) {
+              clearInterval(timer2)
+              spa = 0
+            }
+          })
+        }
+      },)
 })
